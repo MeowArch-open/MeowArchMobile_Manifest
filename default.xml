@@ -9,6 +9,7 @@
   <remote name="meowarch" fetch="https://github.com/MeowArch-open" />
   <remote name="microsoft" fetch="https://github.com/microsoft" />
   <remote name="mipi" fetch="https://github.com/MIPI-Alliance" />
+  <remote name="google" fetch="https://github.com/google" />
   <remote name="silicium" fetch="https://github.com/Project-Silicium" />
   <remote name="openssl" fetch="https://github.com/openssl" />
 
@@ -116,6 +117,12 @@
            path="uefi/Project_Mu/Mu_Basecore/MdePkg/Library/MipiSysTLib/mipisyst"
            revision="370b5944c046bab043dd8b133727b2135af7747a"
            upstream="refs/heads/main"
+           groups="uefi,notdefault" />
+  <project name="brotli"
+           remote="google"
+           path="uefi/Project_Mu/Mu_Basecore/MdeModulePkg/Library/BrotliCustomDecompressLib/brotli"
+           revision="e230f474b87134e8c6c85b630084c612057f253e"
+           upstream="refs/heads/master"
            groups="uefi,notdefault" />
   <project name="openssl"
            remote="openssl"
