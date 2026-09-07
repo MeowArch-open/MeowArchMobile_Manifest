@@ -48,7 +48,10 @@ The `Mu_Basecore` and `Silicium-ACPI` projects are the MeowArch-open mirrors
 selected by the current Project Mu gitlinks; they are locked to the same
 commits as the Project Mu checkout. The nested MIPI System Trace gitlink is
 also represented explicitly because the new Basecore `MdePkg.dec` requires its
-include directory during metadata processing.
+include directory during metadata processing. The Basecore SPDM, oniguruma and
+libfdt dependencies are also represented explicitly; the SPDM lock uses the
+reachable upstream commit ending in `432e` because the mirror gitlink ending in
+`4320` is not present in DMTF's repository.
 
 Do not add `--submodules` for this manifest; the submodules are represented as
 fixed repo projects.

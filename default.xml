@@ -10,6 +10,9 @@
   <remote name="microsoft" fetch="https://github.com/microsoft" />
   <remote name="mipi" fetch="https://github.com/MIPI-Alliance" />
   <remote name="google" fetch="https://github.com/google" />
+  <remote name="dmtf" fetch="https://github.com/DMTF" />
+  <remote name="kkos" fetch="https://github.com/kkos" />
+  <remote name="devicetree" fetch="https://github.com/devicetree-org" />
   <remote name="silicium" fetch="https://github.com/Project-Silicium" />
   <remote name="openssl" fetch="https://github.com/openssl" />
 
@@ -116,6 +119,24 @@
            remote="mipi"
            path="uefi/Project_Mu/Mu_Basecore/MdePkg/Library/MipiSysTLib/mipisyst"
            revision="370b5944c046bab043dd8b133727b2135af7747a"
+           upstream="refs/heads/main"
+           groups="uefi,notdefault" />
+  <project name="libspdm"
+           remote="dmtf"
+           path="uefi/Project_Mu/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm"
+           revision="98ef964e1e9a0c39c7efb67143d3a13a819432e"
+           upstream="refs/heads/main"
+           groups="uefi,notdefault" />
+  <project name="oniguruma"
+           remote="kkos"
+           path="uefi/Project_Mu/Mu_Basecore/MdeModulePkg/Universal/RegularExpressionDxe/oniguruma"
+           revision="4ef89209a239c1aea328cf13c05a2807e5c146d1"
+           upstream="refs/heads/master"
+           groups="uefi,notdefault" />
+  <project name="pylibfdt"
+           remote="devicetree"
+           path="uefi/Project_Mu/Mu_Basecore/MdePkg/Library/BaseFdtLib/libfdt"
+           revision="cfff805481bdea27f900c32698171286542b8d3c"
            upstream="refs/heads/main"
            groups="uefi,notdefault" />
   <project name="brotli"
