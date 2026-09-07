@@ -78,7 +78,7 @@
        repo submodule-sync mode for this tree; these entries are already pinned. -->
   <project name="MeowArchMobile_Project_Mu"
            path="uefi/Project_Mu"
-           revision="271e4f9f33d305a288a68a31d6ffd23f457dd1cc"
+           revision="05cee5cba10e0b00d07acfc122de822b7ba65ace"
            upstream="refs/heads/main"
            groups="uefi,notdefault" />
   <project name="MeowArchMobile_UEFI_common_Binary"
@@ -98,17 +98,17 @@
            revision="841317731fb907cd366222d831a96ab0974b4101"
            upstream="refs/heads/release/202511"
            groups="uefi,notdefault" />
-  <project name="mu_basecore"
-           remote="microsoft"
+  <project name="MeowArchMobile_mu_basecore"
+           remote="meowarch"
            path="uefi/Project_Mu/Mu_Basecore"
-           revision="4fad4bc64ac5e01963f2c48758a493a75ac14b00"
-           upstream="refs/heads/release/202511"
+           revision="61b9dba507fdf4ffab451f9fdd34ece653f5c35f"
+           upstream="refs/heads/MewoArch-26-09"
            groups="uefi,notdefault" />
-  <project name="Silicium-ACPI"
-           remote="silicium"
+  <project name="MeowArchMobile_Silicium-ACPI"
+           remote="meowarch"
            path="uefi/Project_Mu/Silicium-ACPI"
-           revision="e8e16b124ae78e82cc52c0ae87a837704589e76d"
-           upstream="refs/heads/main"
+           revision="d6905e72ebfc240b06c90a15b548bc6c339c8465"
+           upstream="refs/heads/MewoArch-26-09"
            groups="uefi,notdefault" />
   <project name="openssl"
            remote="openssl"

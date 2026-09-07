@@ -44,6 +44,10 @@ uefi/Project_Mu/
 └── Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl
 ```
 
+The `Mu_Basecore` and `Silicium-ACPI` projects are the MeowArch-open mirrors
+selected by the current Project Mu gitlinks; they are locked to the same
+commits as the Project Mu checkout.
+
 Do not add `--submodules` for this manifest; the submodules are represented as
 fixed repo projects.
 
