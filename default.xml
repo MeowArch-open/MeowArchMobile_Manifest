@@ -8,6 +8,7 @@
 
   <remote name="meowarch" fetch="https://github.com/MeowArch-open" />
   <remote name="microsoft" fetch="https://github.com/microsoft" />
+  <remote name="mipi" fetch="https://github.com/MIPI-Alliance" />
   <remote name="silicium" fetch="https://github.com/Project-Silicium" />
   <remote name="openssl" fetch="https://github.com/openssl" />
 
@@ -109,6 +110,12 @@
            path="uefi/Project_Mu/Silicium-ACPI"
            revision="d6905e72ebfc240b06c90a15b548bc6c339c8465"
            upstream="refs/heads/MewoArch-26-09"
+           groups="uefi,notdefault" />
+  <project name="public-mipi-sys-t"
+           remote="mipi"
+           path="uefi/Project_Mu/Mu_Basecore/MdePkg/Library/MipiSysTLib/mipisyst"
+           revision="370b5944c046bab043dd8b133727b2135af7747a"
+           upstream="refs/heads/main"
            groups="uefi,notdefault" />
   <project name="openssl"
            remote="openssl"

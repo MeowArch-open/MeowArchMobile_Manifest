@@ -46,7 +46,9 @@ uefi/Project_Mu/
 
 The `Mu_Basecore` and `Silicium-ACPI` projects are the MeowArch-open mirrors
 selected by the current Project Mu gitlinks; they are locked to the same
-commits as the Project Mu checkout.
+commits as the Project Mu checkout. The nested MIPI System Trace gitlink is
+also represented explicitly because the new Basecore `MdePkg.dec` requires its
+include directory during metadata processing.
 
 Do not add `--submodules` for this manifest; the submodules are represented as
 fixed repo projects.
