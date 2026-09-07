@@ -15,6 +15,7 @@
   <remote name="devicetree" fetch="https://github.com/devicetree-org" />
   <remote name="silicium" fetch="https://github.com/Project-Silicium" />
   <remote name="openssl" fetch="https://github.com/openssl" />
+  <remote name="linux-msm" fetch="https://github.com/linux-msm" />
 
   <default remote="meowarch"
            revision="main"
@@ -66,7 +67,7 @@
            groups="default,builder,rootfs" />
   <project name="MeowArchMobile_Builder"
            path="builder"
-           revision="e1351bb3b3d6e3341423b8d4706e7b382c3dccd0"
+           revision="86d7f0f955aac40e0f0289d7d999a7d30101785a"
            upstream="refs/heads/main"
            groups="default,builder" />
   <project name="MeowArchMobile_Toolchain"
@@ -82,6 +83,12 @@
            revision="56582561ec4377271cf73524c3b350ee2e593cd4"
            upstream="refs/heads/main"
            groups="private,modem,notdefault" />
+  <project name="rmtfs"
+           remote="linux-msm"
+           path="modem/services/rmtfs"
+           revision="b30a3eb38f9af283f18dbd3c7755653efc52c094"
+           upstream="refs/heads/master"
+           groups="private,modem,rmtfs,notdefault" />
 
   <!-- UEFI inputs. The nested projects replace Project Mu's .gitmodules
        checkout, including its old misspelled UEFI-binary URL. Do not use the
