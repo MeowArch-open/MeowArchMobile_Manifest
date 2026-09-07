@@ -10,7 +10,7 @@ so `repo sync -c` can fetch the required revision efficiently.
 The default profile contains the public Linux-side projects:
 
 ```text
-kernel common display audio touch wifi common_rootfs
+kernel common display audio touch wifi common_rootfs builder
 ```
 
 The complete authenticated profile adds the private Modem repository and all
