@@ -59,9 +59,14 @@
            revision="d5780d789641b5495dab00f34b34aa866e491cc0"
            upstream="refs/heads/main"
            groups="default,linux,rootfs" />
+  <project name="MeowArchMobile_ProtectedPackages"
+           path="protected_packages"
+           revision="34619efa6a0cca50c1a12eb1ec7f83477d34fe4b"
+           upstream="refs/heads/main"
+           groups="default,builder,rootfs" />
   <project name="MeowArchMobile_Builder"
            path="builder"
-           revision="101c4195cff7a6b5b2808401054abba8c2061e47"
+           revision="4354aa7233362467f97a3f455247a193de1cb75c"
            upstream="refs/heads/main"
            groups="default,builder" />
   <project name="MeowArchMobile_Toolchain"
