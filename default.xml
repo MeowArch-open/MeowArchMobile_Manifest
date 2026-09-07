@@ -61,7 +61,7 @@
            groups="default,builder" />
   <project name="MeowArchMobile_Toolchain"
            path="toolchain"
-           revision="ac25490"
+           revision="ee2c11a1b4e61ea54a1d526e6ca2444c0e68751d"
            upstream="refs/heads/main"
            groups="default,builder,toolchain" />
 
