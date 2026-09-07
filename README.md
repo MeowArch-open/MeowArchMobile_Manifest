@@ -10,7 +10,7 @@ so `repo sync -c` can fetch the required revision efficiently.
 The default profile contains the public Linux-side projects:
 
 ```text
-kernel common display audio touch wifi common_rootfs builder
+kernel common display audio touch wifi common_rootfs builder toolchain
 ```
 
 The complete authenticated profile adds the private Modem repository and all
@@ -21,6 +21,10 @@ repo init -u https://github.com/MeowArch-open/MeowArchMobile_Manifest \
   -b main -m default.xml
 repo sync -j8 -g default,private,uefi
 ```
+
+The `toolchain` project is a small metadata repository whose Release asset is
+downloaded by the Builder. It supplies the host x86_64 cross-toolchain for
+Kernel/UEFI/DTB/ESP; only the rootfs/AUR stage enters the ARM64 container.
 
 The Modem repository is intentionally `private,notdefault`; a user without
 access will receive a normal GitHub permission error when requesting the
