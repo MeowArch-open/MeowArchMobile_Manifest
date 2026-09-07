@@ -56,9 +56,14 @@
            groups="default,linux,rootfs" />
   <project name="MeowArchMobile_Builder"
            path="builder"
-           revision="23e352fff6fce4787477c59e3edfc6de42cfa8a9"
+           revision="2933ca56ac94499fa3d6262aa5e846dc912485a1"
            upstream="refs/heads/main"
            groups="default,builder" />
+  <project name="MeowArchMobile_Toolchain"
+           path="toolchain"
+           revision="ac25490"
+           upstream="refs/heads/main"
+           groups="default,builder,toolchain" />
 
   <!-- The Modem repository is private by design. It is excluded from the
        default checkout and included by -g private for an authenticated build. -->
