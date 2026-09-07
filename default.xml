@@ -56,7 +56,7 @@
            groups="default,linux,rootfs" />
   <project name="MeowArchMobile_Builder"
            path="builder"
-           revision="50ca42ed2262a5d305e66b5f092aa8247b96b5c2"
+           revision="895a2612cf8d0984dd1e8d8fb93d411c99f10118"
            upstream="refs/heads/main"
            groups="default,builder" />
 
