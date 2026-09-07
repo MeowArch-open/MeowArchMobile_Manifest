@@ -125,7 +125,7 @@
   <project name="libspdm"
            remote="dmtf"
            path="uefi/Project_Mu/Mu_Basecore/SecurityPkg/DeviceSecurity/SpdmLib/libspdm"
-           revision="98ef964e1e9a0c39c7efb67143d3a13a819432e"
+           revision="98ef964e1e9a0c39c7efb67143d3a13a819432e0"
            upstream="refs/heads/main"
            sync-c="false"
            groups="uefi,notdefault" />
