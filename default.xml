@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <notice>
+    MeowArch zorn / SM8650 manifest. The default group is the public Linux
+    bring-up set. Add private and uefi groups for the complete image build:
+    repo sync -g default,private,uefi.
+  </notice>
+
+  <remote name="meowarch" fetch="https://github.com/MeowArch-open" />
+  <remote name="microsoft" fetch="https://github.com/microsoft" />
+  <remote name="silicium" fetch="https://github.com/Project-Silicium" />
+  <remote name="openssl" fetch="https://github.com/openssl" />
+
+  <default remote="meowarch"
+           revision="main"
+           sync-j="8"
+           sync-c="true"
+           sync-tags="false" />
+
+  <!-- Public Linux/kernel and subsystem inputs. Revisions are locked to the
+       commits that were used for the current zorn bring-up. -->
+  <project name="MeowArchMobile_Kernel"
+           path="kernel"
+           revision="02294ae005b9604138a353fdf9e642b7e8d161ab"
+           upstream="refs/heads/v7.0.12-meowarch1"
+           groups="default,linux,kernel" />
+  <project name="MeowArchMobile_sm8650AB_devicetree"
+           path="common"
+           revision="0978ae5d96908f209bcf69976e607718db56b403"
+           upstream="refs/heads/main"
+           groups="default,linux,dt" />
+  <project name="MeowArchMobile_sm8650AB_Display"
+           path="display"
+           revision="a1db8d51444bab7d21bf433b2b7320c6f924d2dd"
+           upstream="refs/heads/main"
+           groups="default,linux,display" />
+  <project name="MeowArchMobile_sm8650AB_Audio"
+           path="audio"
+           revision="07b11c70b0271959d4c7aae5d418a429051855a7"
+           upstream="refs/heads/main"
+           groups="default,linux,audio" />
+  <project name="MeowArchMobile_sm8650AB_Touch"
+           path="touch"
+           revision="cb907533e92daa59841d9047b11e186930279e2b"
+           upstream="refs/heads/main"
+           groups="default,linux,touch" />
+  <project name="MeowArchMobile_sm8650AB_Wifi"
+           path="wifi"
+           revision="b8027a046b60934d389dd84d96dd5fd8da2f6c4c"
+           upstream="refs/heads/main"
+           groups="default,linux,wifi" />
+  <project name="MeowArchMobile_common_rootfs"
+           path="common_rootfs"
+           revision="cdc3b5c83cadf5e8b8d5b6ff721da5f369c9c18b"
+           upstream="refs/heads/main"
+           groups="default,linux,rootfs" />
+
+  <!-- The Modem repository is private by design. It is excluded from the
+       default checkout and included by -g private for an authenticated build. -->
+  <project name="MeowArchMobile_sm8650AB_Modem"
+           path="modem"
+           revision="56582561ec4377271cf73524c3b350ee2e593cd4"
+           upstream="refs/heads/main"
+           groups="private,modem,notdefault" />
+
+  <!-- UEFI inputs. The nested projects replace Project Mu's .gitmodules
+       checkout, including its old misspelled UEFI-binary URL. Do not use the
+       repo submodule-sync mode for this tree; these entries are already pinned. -->
+  <project name="MeowArchMobile_Project_Mu"
+           path="uefi/Project_Mu"
+           revision="271e4f9f33d305a288a68a31d6ffd23f457dd1cc"
+           upstream="refs/heads/main"
+           groups="uefi,notdefault" />
+  <project name="MeowArchMobile_UEFI_common_Binary"
+           path="uefi/Project_Mu/Binaries"
+           revision="4eeb0bb099c152fdd50aaa87b5f38ef860aec6c6"
+           upstream="refs/heads/main"
+           groups="uefi,notdefault" />
+  <project name="mu_plus"
+           remote="microsoft"
+           path="uefi/Project_Mu/Common/Mu"
+           revision="2bd2104047c8e45e185e5020b21cfb044ceb0c93"
+           upstream="refs/heads/release/202511"
+           groups="uefi,notdefault" />
+  <project name="mu_oem_sample"
+           remote="microsoft"
+           path="uefi/Project_Mu/Common/Mu_OEM_Sample"
+           revision="841317731fb907cd366222d831a96ab0974b4101"
+           upstream="refs/heads/release/202511"
+           groups="uefi,notdefault" />
+  <project name="mu_basecore"
+           remote="microsoft"
+           path="uefi/Project_Mu/Mu_Basecore"
+           revision="4fad4bc64ac5e01963f2c48758a493a75ac14b00"
+           upstream="refs/heads/release/202511"
+           groups="uefi,notdefault" />
+  <project name="Silicium-ACPI"
+           remote="silicium"
+           path="uefi/Project_Mu/Silicium-ACPI"
+           revision="e8e16b124ae78e82cc52c0ae87a837704589e76d"
+           upstream="refs/heads/main"
+           groups="uefi,notdefault" />
+  <project name="openssl"
+           remote="openssl"
+           path="uefi/Project_Mu/Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl"
+           revision="67b5686b4419b4cb8caa502711c41815f5279751"
+           upstream="refs/heads/master"
+           groups="uefi,notdefault" />
+</manifest>
