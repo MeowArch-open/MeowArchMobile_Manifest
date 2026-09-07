@@ -61,7 +61,7 @@
            groups="default,linux,rootfs" />
   <project name="MeowArchMobile_ProtectedPackages"
            path="protected_packages"
-           revision="34619efa6a0cca50c1a12eb1ec7f83477d34fe4b"
+           revision="202d22fcfb631322d90ea0b4ce3d7d5a3e1b5605"
            upstream="refs/heads/main"
            groups="default,builder,rootfs" />
   <project name="MeowArchMobile_Builder"
