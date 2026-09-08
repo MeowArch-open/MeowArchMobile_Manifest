@@ -65,6 +65,7 @@ jobs:
           repo init \
             -u https://github.com/MeowArch-open/MeowArchMobile_Manifest \
             -b main -m default.xml \
+            --repo-rev=stable \
             --no-current-branch
           git -C .repo/manifests fetch origin "${GITHUB_SHA}"
           git -C .repo/manifests checkout --detach "${GITHUB_SHA}"
