@@ -1,0 +1,167 @@
+name: Build zorn public images
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 1 * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: zorn-public-images
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 720
+    env:
+      WORKSPACE: ${{ github.workspace }}/workspace
+      OUT: ${{ github.workspace }}/workspace/out/zorn
+      RELEASE: ${{ github.workspace }}/release
+      AZURE_CONTAINER: zorn-builds
+    steps:
+      - name: Check ARM64 runner
+        run: |
+          set -Eeuo pipefail
+          case "$(uname -m)" in
+            aarch64|arm64) ;;
+            *) echo "expected ARM64 runner, got $(uname -m)" >&2; exit 1 ;;
+          esac
+          df -h /
+
+      - name: Install host dependencies
+        run: |
+          set -Eeuo pipefail
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            bc bison build-essential ca-certificates clang cmake cpio curl \
+            device-tree-compiler dosfstools e2fsprogs flex git gzip lld make \
+            meson mtools nasm ninja-build patch perl pkg-config python3 \
+            python3-pip python3-venv rsync tar unzip uuid-dev zlib1g-dev zstd
+          sudo rm -rf /var/lib/apt/lists/*
+          sudo install -d -m 0755 /usr/local/bin
+          curl --fail --location --retry 5 \
+            https://storage.googleapis.com/git-repo-downloads/repo \
+            -o /tmp/repo
+          printf '%s  %s\n' \
+            '1211b57b57e4122a9c546295a59b37d24068f1164d0e87bef096d5323c413e4f' \
+            /tmp/repo | sha256sum -c -
+          sudo install -m 0755 /tmp/repo /usr/local/bin/repo
+
+      - name: Check out locked public sources
+        run: |
+          set -Eeuo pipefail
+          mkdir -p "$WORKSPACE"
+          cd "$WORKSPACE"
+          repo init \
+            -u https://github.com/MeowArch-open/MeowArchMobile_Manifest \
+            -b main -m default.xml
+          git -C .repo/manifests fetch origin "${GITHUB_SHA}"
+          git -C .repo/manifests checkout --detach "${GITHUB_SHA}"
+          cp .repo/manifests/default.xml .repo/manifest.xml
+          repo sync -c --no-tags --no-clone-bundle -j4 -g default,uefi
+          test ! -e modem
+          repo manifest -r -o locked-manifest.xml
+
+      - name: Build rootfs, UEFI and ESP
+        run: |
+          set -Eeuo pipefail
+          cd "$WORKSPACE"
+          ./builder/build.sh \
+            --native \
+            --public-no-modem \
+            --jobs 4 \
+            --workspace "$WORKSPACE" \
+            --out "$OUT"
+
+      - name: Validate and package images
+        run: |
+          set -Eeuo pipefail
+          images=(
+            "$OUT/rootfs/rootfs.img"
+            "$OUT/esp/ESP.img"
+            "$OUT/uefi/Mu-zorn-0.img"
+            "$OUT/uefi/Mu-zorn-1.img"
+          )
+          for image in "${images[@]}"; do
+            test -s "$image"
+          done
+          sudo e2fsck -fn "$OUT/rootfs/rootfs.img"
+          mdir -i "$OUT/esp/ESP.img" ::/EFI/BOOT
+          mkdir -p "$RELEASE"
+          cp "$WORKSPACE/locked-manifest.xml" "$RELEASE/locked-manifest.xml"
+          for image in "${images[@]}"; do
+            zstd -T0 -19 --long=27 --no-progress "$image" \
+              -o "$RELEASE/$(basename "$image").zst"
+          done
+          zstd -t "$RELEASE"/*.zst
+          (
+            cd "$RELEASE"
+            sha256sum *.zst locked-manifest.xml > SHA256SUMS
+          )
+          cat >"$RELEASE/provenance.json" <<EOF
+          {
+            "profile": "public-no-modem",
+            "manifest_commit": "${GITHUB_SHA}",
+            "repository": "${GITHUB_REPOSITORY}",
+            "run_id": "${GITHUB_RUN_ID}",
+            "run_attempt": "${GITHUB_RUN_ATTEMPT}",
+            "run_url": "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}",
+            "created_utc": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          (cd "$RELEASE" && sha256sum -c SHA256SUMS)
+          ls -lh "$RELEASE"
+
+      - name: Upload images to Azure Blob Storage
+        env:
+          AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+        run: |
+          set -Eeuo pipefail
+          test -n "$AZURE_STORAGE_CONNECTION_STRING"
+          az storage container create \
+            --name "$AZURE_CONTAINER" \
+            --connection-string "$AZURE_STORAGE_CONNECTION_STRING" \
+            --public-access off \
+            --only-show-errors >/dev/null
+          prefix="runs/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          az storage blob upload-batch \
+            --destination "$AZURE_CONTAINER/$prefix" \
+            --source "$RELEASE" \
+            --connection-string "$AZURE_STORAGE_CONNECTION_STRING" \
+            --overwrite false \
+            --only-show-errors
+          az storage blob upload-batch \
+            --destination "$AZURE_CONTAINER/latest" \
+            --source "$RELEASE" \
+            --connection-string "$AZURE_STORAGE_CONNECTION_STRING" \
+            --overwrite true \
+            --only-show-errors
+          expected=$(find "$RELEASE" -maxdepth 1 -type f | wc -l)
+          immutable=$(az storage blob list \
+            --container-name "$AZURE_CONTAINER" \
+            --prefix "$prefix/" \
+            --connection-string "$AZURE_STORAGE_CONNECTION_STRING" \
+            --query 'length(@)' -o tsv)
+          latest=$(az storage blob list \
+            --container-name "$AZURE_CONTAINER" \
+            --prefix 'latest/' \
+            --connection-string "$AZURE_STORAGE_CONNECTION_STRING" \
+            --query 'length(@)' -o tsv)
+          test "$immutable" -eq "$expected"
+          test "$latest" -ge "$expected"
+          echo "uploaded $immutable immutable blobs and verified latest/"
+
+      - name: Upload release metadata to GitHub
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: zorn-public-build-metadata-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ env.RELEASE }}/SHA256SUMS
+            ${{ env.RELEASE }}/provenance.json
+            ${{ env.RELEASE }}/locked-manifest.xml
+          if-no-files-found: warn
+          retention-days: 14

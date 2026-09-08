@@ -28,7 +28,9 @@ Kernel/UEFI/DTB/ESP; only the rootfs/AUR stage enters the ARM64 container.
 
 The Modem repository is intentionally `private,notdefault`; a user without
 access will receive a normal GitHub permission error when requesting the
-`private` group.
+`private` group. Redistributable builds use `default,uefi` with the Builder's
+`--public-no-modem` profile. That profile never checks out the private project
+and explicitly omits its patches, firmware, services and userspace artifacts.
 
 The UEFI projects are also `notdefault`. Their nested paths reproduce the
 Project Mu workspace and avoid the old `.gitmodules` URL
@@ -73,9 +75,10 @@ pipeline must emit these three artifacts:
    ```
 
 3. `rootfs.img`: an Arch ARM rootfs assembled by
-   `common_rootfs/scripts/build-rootfs.sh`, including the subsystem runtime
-   artifacts supplied by `kernel`, `common`, `display`, `audio`, `touch`,
-   `modem`, and `wifi`.
+   `common_rootfs/scripts/build-rootfs.sh`. The authenticated full profile
+   includes all subsystem runtime artifacts; the automated public profile
+   includes `kernel`, `common`, `display`, `audio`, `touch`, and `wifi` and is
+   intentionally marked `public-no-modem`.
 
 `repo` itself only checks out sources. The ESP and rootfs filesystem-image
 packing step belongs to the release builder and must consume the fixed output
@@ -84,6 +87,16 @@ names above; it must not silently select a different DTB or kernel.
 The current device's ESP selection is documented by the Display component's
 `dts/ESP-current.md`: the default entry loads `/Image` with
 `/dtb/zorn-display.dtb`, whose content is the validated `audio-micb` DT.
+
+## Automated public release
+
+`.github/workflows/build-zorn.yml` runs manually and at 03:17 UTC on the first
+day of each month. It uses GitHub's Ubuntu 24.04 ARM64 runner, syncs only
+`default,uefi`, builds the public-no-Modem rootfs plus UEFI and ESP, validates
+and compresses each image with zstd, then uploads it to the private Azure
+`zorn-builds` container. Every run is retained under
+`runs/<run-id>-<attempt>/`; `latest/` is updated after the immutable upload.
+The workflow requires the repository secret `AZURE_STORAGE_CONNECTION_STRING`.
 
 ## Updating locks
 
