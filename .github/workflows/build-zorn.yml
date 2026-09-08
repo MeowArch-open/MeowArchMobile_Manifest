@@ -30,6 +30,13 @@ jobs:
             *) echo "expected ARM64 runner, got $(uname -m)" >&2; exit 1 ;;
           esac
           df -h /
+          sudo rm -rf \
+            /opt/hostedtoolcache/CodeQL \
+            /usr/local/lib/android \
+            /usr/share/dotnet \
+            /opt/ghc || true
+          docker system prune -af || true
+          df -h /
 
       - name: Install host dependencies
         run: |
@@ -57,7 +64,8 @@ jobs:
           cd "$WORKSPACE"
           repo init \
             -u https://github.com/MeowArch-open/MeowArchMobile_Manifest \
-            -b main -m default.xml
+            -b main -m default.xml \
+            --no-current-branch
           git -C .repo/manifests fetch origin "${GITHUB_SHA}"
           git -C .repo/manifests checkout --detach "${GITHUB_SHA}"
           cp .repo/manifests/default.xml .repo/manifest.xml
