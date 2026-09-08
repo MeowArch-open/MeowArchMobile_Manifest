@@ -57,7 +57,7 @@
            groups="default,linux,wifi" />
   <project name="MeowArchMobile_common_rootfs"
            path="common_rootfs"
-           revision="7946e2dddebb5142c639630c6795abb7e1afaf2a"
+           revision="1e5fc4d69551e5fc53f0544abaed30aadf534fd9"
            upstream="refs/heads/main"
            groups="default,linux,rootfs" />
   <project name="MeowArchMobile_ProtectedPackages"
