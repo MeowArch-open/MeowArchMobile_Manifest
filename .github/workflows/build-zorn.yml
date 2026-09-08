@@ -69,6 +69,8 @@ jobs:
             --no-current-branch
           git -C .repo/manifests fetch origin "${GITHUB_SHA}"
           git -C .repo/manifests checkout --detach "${GITHUB_SHA}"
+          git -C .repo/manifests branch -f default "${GITHUB_SHA}"
+          git -C .repo/manifests symbolic-ref HEAD refs/heads/default
           cp .repo/manifests/default.xml .repo/manifest.xml
           repo sync \
             --no-tags --no-clone-bundle --no-current-branch \
