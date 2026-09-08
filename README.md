@@ -3,9 +3,9 @@
 This is the `repo` manifest for the Xiaomi `zorn` / SM8650 Linux bring-up.
 It locks every project to a commit instead of following moving `main` heads.
 The `upstream` attributes document the branch containing each locked commit;
-the release workflow initializes repo with `--no-current-branch` so nested
-UEFI projects fetch their pinned SHA even when an old commit is no longer
-reachable from the declared upstream branch tip.
+the release workflow initializes and syncs repo with `--no-current-branch` so
+nested UEFI projects fetch their pinned SHA even when an old commit is no
+longer reachable from the declared upstream branch tip.
 
 ## Checkout profiles
 

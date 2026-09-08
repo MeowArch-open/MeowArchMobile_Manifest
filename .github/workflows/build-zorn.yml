@@ -69,7 +69,9 @@ jobs:
           git -C .repo/manifests fetch origin "${GITHUB_SHA}"
           git -C .repo/manifests checkout --detach "${GITHUB_SHA}"
           cp .repo/manifests/default.xml .repo/manifest.xml
-          repo sync --no-tags --no-clone-bundle -j4 -g default,uefi
+          repo sync \
+            --no-tags --no-clone-bundle --no-current-branch \
+            -j4 -g default,uefi
           test ! -e modem
           repo manifest -r -o locked-manifest.xml
 
