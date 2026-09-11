@@ -50,7 +50,7 @@
            revision="cb907533e92daa59841d9047b11e186930279e2b"
            upstream="refs/heads/main"
            groups="default,linux,touch" />
-  <project name="MeowArchMobile_sm8650_Power"
+  <project name="MeowArchMobile_sm8650AB_Power"
            path="power"
            revision="c530dd9ee2343293ff90e1e01b5a1c8e25a23565"
            upstream="refs/heads/main"
