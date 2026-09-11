@@ -50,6 +50,11 @@
            revision="cb907533e92daa59841d9047b11e186930279e2b"
            upstream="refs/heads/main"
            groups="default,linux,touch" />
+  <project name="MeowArchMobile_sm8650_Power"
+           path="power"
+           revision="c530dd9ee2343293ff90e1e01b5a1c8e25a23565"
+           upstream="refs/heads/main"
+           groups="default,linux,power" />
   <project name="MeowArchMobile_sm8650AB_Wifi"
            path="wifi"
            revision="b8027a046b60934d389dd84d96dd5fd8da2f6c4c"
@@ -67,7 +72,7 @@
            groups="default,builder,rootfs" />
   <project name="MeowArchMobile_Builder"
            path="builder"
-           revision="a091539598f95ed86b9a9e9305b9409f9f4f4099"
+           revision="a60efdf0d78eba125dfe792f14873e2ddc69570d"
            upstream="refs/heads/main"
            groups="default,builder" />
   <project name="MeowArchMobile_Toolchain"

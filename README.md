@@ -12,7 +12,7 @@ from the declared upstream branch tip.
 The default profile contains the public Linux-side projects:
 
 ```text
-kernel common display audio touch wifi common_rootfs builder toolchain
+kernel common display audio touch power wifi common_rootfs builder toolchain
 ```
 
 The complete authenticated profile adds the private Modem repository and all
@@ -79,8 +79,8 @@ pipeline must emit these three artifacts:
 3. `rootfs.img`: an Arch ARM rootfs assembled by
    `common_rootfs/scripts/build-rootfs.sh`. The authenticated full profile
    includes all subsystem runtime artifacts; the automated public profile
-   includes `kernel`, `common`, `display`, `audio`, `touch`, and `wifi` and is
-   intentionally marked `public-no-modem`.
+   includes `kernel`, `common`, `display`, `audio`, `touch`, `power`, and `wifi`
+   and is intentionally marked `public-no-modem`.
 
 `repo` itself only checks out sources. The ESP and rootfs filesystem-image
 packing step belongs to the release builder and must consume the fixed output
