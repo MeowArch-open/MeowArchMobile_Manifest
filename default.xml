@@ -60,9 +60,14 @@
            revision="b8027a046b60934d389dd84d96dd5fd8da2f6c4c"
            upstream="refs/heads/main"
            groups="default,linux,wifi" />
+  <project name="MeowArchMobile_sm8650AB_Bluetooth"
+           path="bluetooth"
+           revision="e6828dab7506e41a780b37f00089ee78e6ac9d89"
+           upstream="refs/heads/main"
+           groups="default,linux,bluetooth" />
   <project name="MeowArchMobile_common_rootfs"
            path="common_rootfs"
-           revision="dfeaadb369407eae36f90e4268bd1cd4f9c92015"
+           revision="3a8504297a40a9ef4580f3d0f70750ff8b5d1987"
            upstream="refs/heads/main"
            groups="default,linux,rootfs" />
   <project name="MeowArchMobile_ProtectedPackages"
@@ -72,7 +77,7 @@
            groups="default,builder,rootfs" />
   <project name="MeowArchMobile_Builder"
            path="builder"
-           revision="a60efdf0d78eba125dfe792f14873e2ddc69570d"
+           revision="ad68f72ae69198a95b3e50f3614d2b9e279fdba8"
            upstream="refs/heads/main"
            groups="default,builder" />
   <project name="MeowArchMobile_Toolchain"
