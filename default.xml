@@ -70,6 +70,14 @@
            revision="3a8504297a40a9ef4580f3d0f70750ff8b5d1987"
            upstream="refs/heads/main"
            groups="default,linux,rootfs" />
+  <!-- MeowShell: the Android-like mobile shell layer on top of KDE Plasma/KWin
+       (userspace, one source tree split into meowshell-* packages). Part of the
+       default Linux set; new "shell" category for the userspace UI layer. -->
+  <project name="MeowShell_Mobile"
+           path="meowshell"
+           revision="1212ac367356557de9de1267acdfef5cd37f3877"
+           upstream="refs/heads/main"
+           groups="default,linux,shell" />
   <project name="MeowArchMobile_ProtectedPackages"
            path="protected_packages"
            revision="202d22fcfb631322d90ea0b4ce3d7d5a3e1b5605"
