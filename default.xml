@@ -25,9 +25,16 @@
 
   <!-- Public Linux/kernel and subsystem inputs. Revisions are locked to the
        commits that were used for the current zorn bring-up. -->
+  <!-- Kernel is pinned to the CLEAN upstream base (Arch Linux v7.2.6-arch2).
+       The zorn kernel deltas are applied at build time by build-kernel.sh from
+       each subsystem's source/kernel overlays (new drivers) and patches/
+       (modifications to existing files). The fully-baked result lives on branch
+       v7.2.6-meowarch1 (tip ed49b9c) for reference only -- do NOT pin that tip
+       here, or the builder re-applies patches already present and the kernel
+       build aborts with "patch does not apply". -->
   <project name="MeowArchMobile_Kernel"
            path="kernel"
-           revision="ed49b9c1e7cc46b8ac74afecf1257f6af141dfdb"
+           revision="4498b7f9a5ba741370b6ca880fa047cee00c8d11"
            upstream="refs/heads/v7.2.6-meowarch1"
            groups="default,linux,kernel" />
   <project name="MeowArchMobile_sm8650AB_devicetree"
