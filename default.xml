@@ -32,7 +32,7 @@
            groups="default,linux,kernel" />
   <project name="MeowArchMobile_sm8650AB_devicetree"
            path="common"
-           revision="a6b3c605094c11a4865090d683e3fce27bf36765"
+           revision="e11ac2cdae63a9e4ac3d4fa3eecf628ae663f25e"
            upstream="refs/heads/main"
            groups="default,linux,dt" />
   <project name="MeowArchMobile_sm8650AB_Display"
@@ -65,9 +65,19 @@
            revision="ebffa6d410b4f814fa78ebdf0806a6d44afb9cea"
            upstream="refs/heads/main"
            groups="default,linux,bluetooth" />
+  <!-- hexagonrpcd: FastRPC HexagonFS file server for the ADSP sensor PD (the
+       mainline replacement for Android sscrpd). Fork of linux-msm/hexagonrpc
+       with a HexagonFS write path so the sensor PD can regenerate its registry;
+       the Builder compiles it and common/services/sensors ships the bring-up
+       unit + vendor HexagonFS data. -->
+  <project name="MeowArchMobile_hexagonrpc"
+           path="hexagonrpc"
+           revision="c9dab74c3393a6089db1ecba0472a867b1dadfb6"
+           upstream="refs/heads/MewoArch-26-09"
+           groups="default,linux,sensors" />
   <project name="MeowArchMobile_common_rootfs"
            path="common_rootfs"
-           revision="bec1e873757b3147f617ece1c5d56b6f71f24f80"
+           revision="134fdd0235f13836e1701f03f2475920d166b13f"
            upstream="refs/heads/main"
            groups="default,linux,rootfs" />
   <!-- MeowShell (the experimental Android-like mobile shell) is intentionally
@@ -81,7 +91,7 @@
            groups="default,builder,rootfs" />
   <project name="MeowArchMobile_Builder"
            path="builder"
-           revision="1e5be9f0552451e31765c8fa6478f8fd67380605"
+           revision="b12e16636f1259a1c50372bfe6dc97a2255650d0"
            upstream="refs/heads/main"
            groups="default,builder" />
   <project name="MeowArchMobile_Toolchain"
