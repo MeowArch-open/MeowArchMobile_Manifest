@@ -29,7 +29,7 @@
        The zorn kernel deltas are applied at build time by build-kernel.sh from
        each subsystem's source/kernel overlays (new drivers) and patches/
        (modifications to existing files). The fully-baked result lives on branch
-       v7.2.6-meowarch1 (tip ed49b9c) for reference only -- do NOT pin that tip
+       v7.2.6-meowarch1 (tip ed49b9c) for reference only; do NOT pin that tip
        here, or the builder re-applies patches already present and the kernel
        build aborts with "patch does not apply". -->
   <project name="MeowArchMobile_Kernel"
