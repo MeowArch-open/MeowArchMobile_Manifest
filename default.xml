@@ -91,7 +91,7 @@
            groups="default,builder,rootfs" />
   <project name="MeowArchMobile_Builder"
            path="builder"
-           revision="b12e16636f1259a1c50372bfe6dc97a2255650d0"
+           revision="1ecd413de030bcb80643f75c8c8a7a67598f55aa"
            upstream="refs/heads/main"
            groups="default,builder" />
   <project name="MeowArchMobile_Toolchain"
