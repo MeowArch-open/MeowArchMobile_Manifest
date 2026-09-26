@@ -37,7 +37,7 @@
            groups="default,linux,dt" />
   <project name="MeowArchMobile_sm8650AB_Display"
            path="display"
-           revision="c4784541b145e721ed5714e23229a4d941b906f4"
+           revision="fe1b81b5b694e8d356b61333b8b37945a6a3c7f5"
            upstream="refs/heads/main"
            groups="default,linux,display" />
   <project name="MeowArchMobile_sm8650AB_Audio"
@@ -57,7 +57,7 @@
            groups="default,linux,power" />
   <project name="MeowArchMobile_sm8650AB_Wifi"
            path="wifi"
-           revision="8d911ae12f5252d60521903062fa3f2a1b0702c2"
+           revision="e7d30d3fa904d6dd9fbd61107e74d3fe1fd06c0b"
            upstream="refs/heads/main"
            groups="default,linux,wifi" />
   <project name="MeowArchMobile_sm8650AB_Bluetooth"
