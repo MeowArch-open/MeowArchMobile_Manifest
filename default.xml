@@ -27,8 +27,8 @@
        commits that were used for the current zorn bring-up. -->
   <project name="MeowArchMobile_Kernel"
            path="kernel"
-           revision="02294ae005b9604138a353fdf9e642b7e8d161ab"
-           upstream="refs/heads/v7.0.12-meowarch1"
+           revision="ed49b9c1e7cc46b8ac74afecf1257f6af141dfdb"
+           upstream="refs/heads/v7.2.6-meowarch1"
            groups="default,linux,kernel" />
   <project name="MeowArchMobile_sm8650AB_devicetree"
            path="common"
@@ -70,14 +70,10 @@
            revision="3a8504297a40a9ef4580f3d0f70750ff8b5d1987"
            upstream="refs/heads/main"
            groups="default,linux,rootfs" />
-  <!-- MeowShell: the Android-like mobile shell layer on top of KDE Plasma/KWin
-       (userspace, one source tree split into meowshell-* packages). Part of the
-       default Linux set; new "shell" category for the userspace UI layer. -->
-  <project name="MeowShell_Mobile"
-           path="meowshell"
-           revision="1212ac367356557de9de1267acdfef5cd37f3877"
-           upstream="refs/heads/main"
-           groups="default,linux,shell" />
+  <!-- MeowShell (the experimental Android-like mobile shell) is intentionally
+       NOT a first-class manifest project: it is tracked as an experimental,
+       opt-in userspace component inside common_rootfs (profiles/zorn/experimental.tsv),
+       not built into the default image. -->
   <project name="MeowArchMobile_ProtectedPackages"
            path="protected_packages"
            revision="202d22fcfb631322d90ea0b4ce3d7d5a3e1b5605"
