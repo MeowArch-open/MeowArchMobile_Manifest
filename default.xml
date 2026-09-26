@@ -25,16 +25,20 @@
 
   <!-- Public Linux/kernel and subsystem inputs. Revisions are locked to the
        commits that were used for the current zorn bring-up. -->
-  <!-- Kernel is pinned to the CLEAN upstream base (Arch Linux v7.2.6-arch2).
-       The zorn kernel deltas are applied at build time by build-kernel.sh from
-       each subsystem's source/kernel overlays (new drivers) and patches/
-       (modifications to existing files). The fully-baked result lives on branch
-       v7.2.6-meowarch1 (tip ed49b9c) for reference only; do NOT pin that tip
-       here, or the builder re-applies patches already present and the kernel
-       build aborts with "patch does not apply". -->
+  <!-- Kernel is pinned to the fully-baked zorn bring-up tip on branch
+       v7.2.6-meowarch1, which already carries every subsystem's driver work
+       (display/DPU/DSI/panel, audio, touch, power, modem/IPA, plus core deltas
+       in base/dd.c, gpio/gpiolib.c and pinctrl/qcom/pinctrl-msm.c) as real
+       commits on top of the clean Arch Linux v7.2.6-arch2 base, which is its
+       parent 4498b7f. build-kernel.sh detects this baked kernel and does NOT
+       re-apply the per-subsystem source/kernel overlays or patches/: those are
+       the historical layering mechanism for a clean base, are a stale mixed
+       tree snapshot that no longer applies (dpu_encoder.c) and omits the core
+       deltas entirely, so they cannot reproduce this kernel. Keep this pinned
+       at the baked tip; the builder reproduces the kernel from it verbatim. -->
   <project name="MeowArchMobile_Kernel"
            path="kernel"
-           revision="4498b7f9a5ba741370b6ca880fa047cee00c8d11"
+           revision="ed49b9c1e7cc46b8ac74afecf1257f6af141dfdb"
            upstream="refs/heads/v7.2.6-meowarch1"
            groups="default,linux,kernel" />
   <project name="MeowArchMobile_sm8650AB_devicetree"
@@ -98,7 +102,7 @@
            groups="default,builder,rootfs" />
   <project name="MeowArchMobile_Builder"
            path="builder"
-           revision="1ecd413de030bcb80643f75c8c8a7a67598f55aa"
+           revision="7d4e3443de70196ae8922e8e66c73d8a24e1416c"
            upstream="refs/heads/main"
            groups="default,builder" />
   <project name="MeowArchMobile_Toolchain"
