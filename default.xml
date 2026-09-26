@@ -37,12 +37,12 @@
            groups="default,linux,dt" />
   <project name="MeowArchMobile_sm8650AB_Display"
            path="display"
-           revision="a1db8d51444bab7d21bf433b2b7320c6f924d2dd"
+           revision="c4784541b145e721ed5714e23229a4d941b906f4"
            upstream="refs/heads/main"
            groups="default,linux,display" />
   <project name="MeowArchMobile_sm8650AB_Audio"
            path="audio"
-           revision="e18043d65bbda314f3e0162b4bd9210b7dce38d6"
+           revision="ee9ff65c676f26a237e4ac7b27dbed80cc61ab83"
            upstream="refs/heads/main"
            groups="default,linux,audio" />
   <project name="MeowArchMobile_sm8650AB_Touch"
@@ -57,7 +57,7 @@
            groups="default,linux,power" />
   <project name="MeowArchMobile_sm8650AB_Wifi"
            path="wifi"
-           revision="b8027a046b60934d389dd84d96dd5fd8da2f6c4c"
+           revision="8d911ae12f5252d60521903062fa3f2a1b0702c2"
            upstream="refs/heads/main"
            groups="default,linux,wifi" />
   <project name="MeowArchMobile_sm8650AB_Bluetooth"
@@ -67,7 +67,7 @@
            groups="default,linux,bluetooth" />
   <project name="MeowArchMobile_common_rootfs"
            path="common_rootfs"
-           revision="9e9b34f771035bb02a71b281136a0bdf9b20165c"
+           revision="bec1e873757b3147f617ece1c5d56b6f71f24f80"
            upstream="refs/heads/main"
            groups="default,linux,rootfs" />
   <!-- MeowShell (the experimental Android-like mobile shell) is intentionally
@@ -81,7 +81,7 @@
            groups="default,builder,rootfs" />
   <project name="MeowArchMobile_Builder"
            path="builder"
-           revision="5a3aca1024e4a2439355991479492dd28422cb72"
+           revision="1e5be9f0552451e31765c8fa6478f8fd67380605"
            upstream="refs/heads/main"
            groups="default,builder" />
   <project name="MeowArchMobile_Toolchain"
