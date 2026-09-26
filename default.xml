@@ -67,7 +67,7 @@
            groups="default,linux,bluetooth" />
   <project name="MeowArchMobile_common_rootfs"
            path="common_rootfs"
-           revision="4dd918c1c77a24ca38f0a197bb6a04c26048897a"
+           revision="9e9b34f771035bb02a71b281136a0bdf9b20165c"
            upstream="refs/heads/main"
            groups="default,linux,rootfs" />
   <!-- MeowShell (the experimental Android-like mobile shell) is intentionally
@@ -81,7 +81,7 @@
            groups="default,builder,rootfs" />
   <project name="MeowArchMobile_Builder"
            path="builder"
-           revision="ec570d51b33d4afc2bb29ad650c2e354f1cc4528"
+           revision="5a3aca1024e4a2439355991479492dd28422cb72"
            upstream="refs/heads/main"
            groups="default,builder" />
   <project name="MeowArchMobile_Toolchain"
