@@ -32,7 +32,7 @@
            groups="default,linux,kernel" />
   <project name="MeowArchMobile_sm8650AB_devicetree"
            path="common"
-           revision="0978ae5d96908f209bcf69976e607718db56b403"
+           revision="a6b3c605094c11a4865090d683e3fce27bf36765"
            upstream="refs/heads/main"
            groups="default,linux,dt" />
   <project name="MeowArchMobile_sm8650AB_Display"
