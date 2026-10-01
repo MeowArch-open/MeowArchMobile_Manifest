@@ -25,21 +25,19 @@
 
   <!-- Public Linux/kernel and subsystem inputs. Revisions are locked to the
        commits that were used for the current zorn bring-up. -->
-  <!-- Kernel is pinned to the fully-baked zorn bring-up tip on branch
-       v7.2.6-meowarch1, which already carries every subsystem's driver work
-       (display/DPU/DSI/panel, audio, touch, power, modem/IPA, plus core deltas
-       in base/dd.c, gpio/gpiolib.c and pinctrl/qcom/pinctrl-msm.c) as real
-       commits on top of the clean Arch Linux v7.2.6-arch2 base, which is its
-       parent 4498b7f. build-kernel.sh detects this baked kernel and does NOT
-       re-apply the per-subsystem source/kernel overlays or patches/: those are
-       the historical layering mechanism for a clean base, are a stale mixed
-       tree snapshot that no longer applies (dpu_encoder.c) and omits the core
-       deltas entirely, so they cannot reproduce this kernel. Keep this pinned
-       at the baked tip; the builder reproduces the kernel from it verbatim. -->
+  <!-- Kernel is pinned to the fully-baked zorn bring-up tip, which carries
+       every subsystem's driver work (display/DPU/DSI/panel, audio, touch,
+       power, modem/IPA, plus core deltas in base/dd.c, gpio/gpiolib.c and
+       pinctrl/qcom/pinctrl-msm.c) as a single commit on the Arch Linux base.
+       build-kernel.sh detects this baked kernel (panel-xiaomi-o11-42-02-0a.c
+       present) and skips the stale per-subsystem overlays and patches.
+       Upgraded v7.2.6-arch2 to v7.2.7-arch1: the 42 zorn-touched files had
+       ZERO upstream changes between the two bases (verified via blob SHA),
+       so the rebase was conflict-free. -->
   <project name="MeowArchMobile_Kernel"
            path="kernel"
-           revision="ed49b9c1e7cc46b8ac74afecf1257f6af141dfdb"
-           upstream="refs/heads/v7.2.6-meowarch1"
+           revision="6a424a9bfe0363221521ecd3653b767acf9e958f"
+           upstream="refs/heads/v7.2.7-meowarch1"
            groups="default,linux,kernel" />
   <project name="MeowArchMobile_sm8650AB_devicetree"
            path="common"
